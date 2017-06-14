@@ -80,8 +80,29 @@ model %>%
   #Apply an activation function to an output.
   #Relu can only be used for Hidden layers
   layer_activation(activation="relu") %>%
+  #output layer
   layer_dense(units=10) %>%
   #Apply an activation function to an output layer
   #softmax activation for Output layer which computes the probabilities for the classes
   layer_activation(activation="softmax") 
+
+
+
+#Model's summary
+summary(model)
+
+
+#Compiling the Model and Optimizing the model
+#Configure a Keras model for training using compile()
+model %>%
+  compile(loss ="categorical_crossentropy",
+          optimizer = "adam",
+          metrics= c("accuracy"))
+
+
+#Now let's train the model on the training dataset  
+#epochs = No of iterations on a dataset.
+#batchsize = Number of samples per gradient update.
+model %>% fit(train_x, train_y, epochs = 100, batch_size = 128)
+
 
