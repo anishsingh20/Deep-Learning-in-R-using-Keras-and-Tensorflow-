@@ -31,6 +31,9 @@ cat("No of training samples\t",dim(train_x)[[1]] ,
 #a linear stack of layers
 model<-keras_model_sequential()
 
+
+
+#configuring the Model
 model %>%
   #defining a 2-D convolution layer
   layer_conv_2d(filter=32,kernel_size=c(3,3),padding="same",
@@ -66,7 +69,15 @@ model %>%
 
   
   
-  
+#defining the type of optimizer-ADAM-Adaptive Momentum Estimation
+opt<-optimizer_adam(lr=0.001,decay=1e-6)
+#lr-learning rate , decay - learning rate decay over each update
+
+#compiling the Model
+#loss function for Classification problem-cross entropy
+model %>% compile(loss = "categorical_crossentropy",
+                  optimizer = opt,
+                  metrics="accuracy")
   
   
 
