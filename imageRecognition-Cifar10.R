@@ -38,12 +38,35 @@ model %>%
                 ) %>%
   layer_activation("relu") %>%
   #another 2-D conv layer
-  layer_conv_2d(filter=32 , kernel_size=c(3,3))  %>%
+  layer_conv_2d(filter=32 ,kernel_size=c(3,3))  %>%
   layer_activation("relu") %>%
 #Defining a Pooling layer which reduces the dimentions of the features map and reduces the 
 #computational complexity of the model
   layer_max_pooling_2d(pool_size=c(2,2)) %>%
-  layer_dropout(0.25) #dropout layer to avoid overfitting
+  layer_dropout(0.25) %>% #dropout layer to avoid overfitting 
+  
+  
+  layer_conv_2d(filter=32 , kernel_size=c(3,3),padding="same") %>%
+  layer_activation("relu") %>%
+  layer_conv_2d(filter=32,kernel_size=c(3,3) ) %>%
+  layer_activation("relu") %>%
+  layer_max_pooling_2d(pool_size=c(2,2)) %>%
+  layer_dropout(0.25) %>%
+  
+  #flatten the input
+  layer_flatten() %>%
+  layer_dense(512) %>%
+  layer_activation("relu") %>%
+  layer_dropout(0.5) %>%
+  #output layer-10 classes-10 units
+  layer_dense(10) %>%
+  #applying softmax nonlinear activation function to the output layer to calculate
+  #cross-entropy
+  layer_activation("softmax") #for computing Probabilities of classes-"logit(log probabilities)
+
+  
+  
+  
   
   
 
