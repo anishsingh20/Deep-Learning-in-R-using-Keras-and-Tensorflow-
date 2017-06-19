@@ -9,7 +9,11 @@ Implementing Deep learning in R using Keras and Tensorflow packages for R and im
   3) tensorflow
   4) keras
   
-  MNIST Data set --
+  
+  
+  ## MNIST Data set
+  
+  
   ![GitHub Logo](http://andrew.gibiansky.com/blog/machine-learning/k-nearest-neighbors-simplest-machine-learning/images/mnist-example-ipy.png)
   
 
